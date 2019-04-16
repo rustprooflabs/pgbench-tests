@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS pgbench_lookup1;
 CREATE TABLE pgbench_lookup1 AS
 SELECT generate_series::BIGINT AS id,
         REPEAT('X', (10 * (random() + 1))::INT ) AS data
-    FROM generate_series(1, 10 * /*scale*/ 10)
+    FROM generate_series(1, 10 * :scale)
 ;
 
 DROP TABLE IF EXISTS pgbench_lookup2;
@@ -64,6 +64,12 @@ ALTER TABLE pgbench_reporting
         REFERENCES pgbench_lookup2 (id)
     ;
 
+---------------------------------------------------
+---------------------------------------------------
+---------------------------------------------------
+
+CREATE INDEX IX_pgbench_reporting_fk1 ON pgbench_reporting (fk1);
+CREATE INDEX IX_pgbench_reporting_fk2 ON pgbench_reporting (fk2);
 
 ---------------------------------------------------
 ---------------------------------------------------
