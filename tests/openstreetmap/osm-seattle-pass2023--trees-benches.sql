@@ -1,4 +1,3 @@
-EXPLAIN (ANALYZE, BUFFERS, SETTINGS, VERBOSE)
 WITH selected_place AS (
 SELECT osm_id
     FROM osm_seattle.place_polygon
